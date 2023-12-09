@@ -1,0 +1,39 @@
+name: CI Pipeline
+
+on:
+    pull_request:
+        branches:
+            - main
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
+            - name: Install Dependencies
+              run: |
+                  npm install
+
+            - name: Display Start Time
+              run: echo "Pipeline started at $(date)"
+
+            - name: Format Code with Prettier
+              run: npm run prettier
+
+            - name: Lint Code
+              run: npm run lint
+
+            - name: Run Tests with Jest and Check Coverage
+              run: npm run test
+
+            - name: Build Project
+              run: npm run build
+
+            - name: Display End Time
+              run: echo "Pipeline finished at $(date)"
+
+            - name: Display Success Message
+              if: success()
+              run: echo "PIPELINE SUCCESS WITHOUT ERRORS"
