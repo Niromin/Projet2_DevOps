@@ -1,4 +1,4 @@
-name: CI projet 2 devops
+name: CI Pipeline
 
 on:
     pull_request:
@@ -7,9 +7,14 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+
         steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v2
+
             - name: Install Dependencies
-              run: npm install
+              run: |
+                  npm install
 
             - name: Display Start Time
               run: echo "Pipeline started at $(date)"
