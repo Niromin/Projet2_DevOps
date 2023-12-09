@@ -6,6 +6,7 @@ Travail de recherche , mettre en place de l'integration continue avec les GitHub
 
 -   N° de groupe : 69
 -   Membres du groupe : Quiambao Roemer-Trinité, Belbachir Rayane
+-   Repository git: https://github.com/Niromin/Projet2_DevOps
 
 ## Énoncé
 
