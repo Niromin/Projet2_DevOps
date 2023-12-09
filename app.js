@@ -1,4 +1,6 @@
 module.exports.main = {
+    // Testing pipeline when PR/MR
+
     greet(names) {
         if (!names) {
             return 'Hello, my friend.';
