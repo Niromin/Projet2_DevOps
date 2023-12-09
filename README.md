@@ -5,7 +5,7 @@ Travail de recherche , mettre en place de l'integration continue avec les GitHub
 ## Informations
 
 -   N° de groupe : 69
--   Membres du groupe : Quiambao Trinité, Belbachir Rayane
+-   Membres du groupe : Quiambao Roemer-Trinité, Belbachir Rayane
 
 ## Énoncé
 
@@ -47,35 +47,48 @@ Liens utiles:
 -   Décrivez brièvement ce que fait votre fichier YML.
 
 ```bash
-<votre réponse ici>
+Lorsqu'on fait un pull request, cela va appeler notre fichier YML qui correspond à la pipeline. Ce fichier permet de vérifier plusieurs étapes qui ont été définis dans l'intégration continue. Il comprend des étapes telles que la récupération du code source, l'installation des dépendances, le formatage du code, la vérification de la conformité, l'exécution des tests, la construction du projet et l'affichage de messages de début et de fin, ainsi qu'un message de succès si la pipeline s'exécute sans erreur. 
 ```
 
 -   En particulier : à quoi sert le “on” ? dans votre fichier YML ? Quelle est la différence entre “on push” et “on pull request”. Que conseilleriez-vous comme option parmi ces 2 options à un groupe de développeurs junior ? Pourquoi ?
 
 ```bash
-<votre réponse ici>
+Le "on" correspond au fait de déclencher la pipeline. 
+
+Le "on: pull_request" : Cela signifie que le pipeline sera déclenché chaque fois qu'une pull request est ouverte ou mise à jour. 
+
+Le "on: push" : est activé à chaque fois qu'un nouveau commit est push sur une branche spécifique. 
+
+Il est recommandé pour les juniors de faire une pull_request car cela permet de vérifier des modifications avant d'appliquer merge sur la branche main ce qui apporte une sécurité en plus évitant des bugs ou des erreurs. 
 ```
 
 -   Quelle est la différence entre run et run_on ? Expliquez par rapport à votre pipeline.
 
 ```bash
-<votre réponse ici>
+Le "runs-on" : spécifie l'environnement sur lequel les étapes du pipeline seront exécutées. 
+
+Le "run" : permet de définir des commandes ou des scripts ex : lorsque la pipeline s'exécute cela va lancer la commande tels que "npm install", "npm run prettier", "npm run lint". 
 ```
 
 -   Quelle est la différence entre “use” et “run”. Expliquez par rapport à votre pipeline.
 
 ```bash
-<votre réponse ici>
+Le "use" est utilisé pour incorporer des actions externes préconstruites dans le pipeline, alors que "run" est utilisé pour exécuter des commandes ou des scripts dans l'environnement défini par le champ "runs-on".
+
+Dans notre fichier, l'étape "Checkout Repository" utilise une action externe avec uses: actions/checkout@v2, qui permet de cloner le dépôt dans l'environnement d'exécution. 
 ```
 
 -   Peut-on intervertir différentes étapes dans votre pipeline ? Que votre réponse soit oui ou non, expliquez par rapport à votre pipeline.
 
 ```bash
-<votre réponse ici>
+Oui, par exemple on peut intervertir entre prettier et test. On peut d'abord commencer à run les test et ensuite prettier.
 ```
 
 -   Je veux ajouter un test de sécurité sur mon pipeline en exécutant le programme secure_app. Que devrais-je faire ? Quelles questions devriez-vous vous poser ?
 
 ```bash
-<votre réponse ici>
+On pourrait ajouter une nouvelle étape sur le pipeline en mettant un nouveau run qui exécutera le fichier. Par exemple : 
+
+name: Security Test with secure_app
+run: ./secure_app
 ```
